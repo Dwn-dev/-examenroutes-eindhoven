@@ -635,13 +635,13 @@ const ROUTES = [
   },
   {
     id:"stratum", shield:"10", cls:"a", name:"Weber 2023 — Waalre, Eikenburg & Croy",
-    time:"27:36 video", difficulty:"Video reconstruction", tags:["N2 / exit 33","Floraplein","manoeuvres","video-confirmed"],
-    focus:"Reconstructed from Verkeersschool Weber's 2023 drive. The major corridor is visible in the video: CBR → N2 → exit 33 Waalre → Aalsterweg/Eikenburg area → Floraplein → Antoon Coolenlaan → Karel de Grotelaan → Croy → CBR. The small turns near Eikenburglaan, Sassenlaan and Schweitzerlaan remain approximate.",
+    time:"±25 min", difficulty:"Medium+", tags:["N2 / Waalre exit","Floraplein","manoeuvres","video-confirmed"],
+    focus:"Reconstructed from Verkeersschool Weber's 2023 drive. The major corridor is visible in the video: CBR → N2 → the Waalre exit → Aalsterweg/Eikenburg area → Floraplein → Antoon Coolenlaan → Karel de Grotelaan → Croy → CBR. The small turns near Eikenburglaan, Sassenlaan and Schweitzerlaan remain approximate.",
     waypoints:["N2, Eindhoven","Aalsterweg, Eindhoven","Floraplein, Eindhoven","Antoon Coolenlaan, Eindhoven","Karel de Grotelaan, Eindhoven"],
     steps:[
       ["Leave the CBR and turn left from Hoevenweg","leaving an exit construction means all other traffic goes first, including pedestrians"],
       ["Turn left at the lights and join the N2 southbound","the video uses the second entrance after the viaduct; verify the current signs and layout"],
-      ["Take exit 33 Waalre and turn left towards Eindhoven","the Van der Valk waypoint in map segment 1 only forces the N2/exit-33 corridor—do not enter its car park"],
+      ["Take the Waalre exit and turn left towards Eindhoven","two readings of the video gave different exit numbers, so follow the Waalre signs rather than a number. The Van der Valk waypoint in map segment 1 only forces the corridor—do not enter its car park"],
       ["Follow Aalsterweg into the Eikenburglaan area","the main corridor is video-confirmed; the following small residential turns are approximate"],
       ["Continue via Leenderweg to Floraplein and Floralaan West","choose the lane from current arrows and indicate right before leaving"],
       ["Practise the local Sassenlaan/Schweitzerlaan pocket","approximate; the video includes a parking exercise and straight reversing here"],
@@ -658,7 +658,7 @@ const ROUTES = [
     videoId:"6ZB5WavBZQg",
     source:{title:"MOEILIJKE EXAMENROUTE EINDHOVEN", channel:"Verkeersschool Weber", published:"28 Sep 2023", duration:"27:36", classification:"Video-confirmed reconstruction", confidence:"High for the named main-road corridor; medium to low for the Eikenburglaan/Sassenlaan/Schweitzerlaan turns."},
     mapSegments:[
-      {label:"1 · CBR → N2 exit 33 → Eikenburglaan → Floraplein", href:"https://www.google.com/maps/dir/CBR+Examencentrum+Eindhoven,+Hoevenweg+20,+Eindhoven/Van+der+Valk+Hotel+Eindhoven/Eikenburglaan,+Eindhoven/Floraplein,+Eindhoven", note:"Major corridor: high confidence. Van der Valk is only a forcing waypoint for N2/exit 33; stay on the public road and do not enter the hotel car park."},
+      {label:"1 · CBR → N2 → Waalre exit → Eikenburglaan → Floraplein", href:"https://www.google.com/maps/dir/CBR+Examencentrum+Eindhoven,+Hoevenweg+20,+Eindhoven/Van+der+Valk+Hotel+Eindhoven/Eikenburglaan,+Eindhoven/Floraplein,+Eindhoven", note:"Major corridor: high confidence. Van der Valk is only a forcing waypoint for the N2/Waalre-exit corridor; stay on the public road and do not enter the hotel car park."},
       {label:"2 · Floraplein → residential manoeuvre pocket → Antoon Coolenlaan", href:"https://www.google.com/maps/dir/Floraplein,+Eindhoven/Sassenlaan,+Eindhoven/Schweitzerlaan,+Eindhoven/Aalsterweg,+Eindhoven/Antoon+Coolenlaan,+Eindhoven", note:"Approximate. These small turns could not be fully resolved from the video and Maps may recalculate them."},
       {label:"3 · Antoon Coolenlaan → Karel de Grotelaan → Croy → CBR", href:"https://www.google.com/maps/dir/Antoon+Coolenlaan,+Eindhoven/Karel+de+Grotelaan+4,+Eindhoven/Croy,+Eindhoven/CBR+Examencentrum+Eindhoven,+Hoevenweg+20,+Eindhoven", note:"Named return corridor: medium-high confidence. Follow current navigation, signs and any diversions."}
     ],
@@ -667,7 +667,7 @@ const ROUTES = [
       ["02:40","Turn left at the traffic lights"],
       ["03:00","Use the second N2 entrance after the viaduct"],
       ["04:38","Prepare for the Waalre exit"],
-      ["05:57","Take exit 33 Waalre"],
+      ["05:57","Take the Waalre exit"],
       ["07:44","Reach the Eikenburglaan area"],
       ["11:48","Floraplein: turn left / fourth exit in the video"],
       ["12:37","Sassenlaan area"],
@@ -680,8 +680,8 @@ const ROUTES = [
     ]
   },
   {
-    id:"weber-2022-waalre", shield:"11", cls:"a", name:"Weber 2022 — Waalre residential practice",
-    time:"20:51 video", difficulty:"Approximate video reconstruction", tags:["Waalre exit","residential practice","navigation return"],
+    id:"weber-2022-waalre", shield:"11", cls:"a", name:"Weber 2022 — Waalre exit & residential practice",
+    time:"±19 min", difficulty:"Medium", tags:["Waalre exit","residential practice","navigation return"],
     focus:"A second, separate Weber drive from 2022. The video confirms departure from the CBR, a fast-road section towards the Waalre exit, a residential practice block with parking/reversing, a stop to set navigation, and a return to the CBR. The narration does not prove the small residential street names, so this card deliberately stays broad.",
     waypoints:["N2, Eindhoven","Waalre, Waalre","Aalsterweg, Eindhoven"],
     steps:[
@@ -704,7 +704,7 @@ const ROUTES = [
     source:{title:"RIJEXAMEN IN EINDHOVEN", channel:"Verkeersschool Weber", published:"5 Jan 2022", duration:"20:51", classification:"Video-confirmed high-level reconstruction", confidence:"High for the overall sequence; low for residential street names, the navigation-set stop and the exact return path."},
     mapSegments:[
       {label:"1 · CBR → Waalre exit corridor", href:"https://www.google.com/maps/dir/CBR+Examencentrum+Eindhoven,+Hoevenweg+20,+Eindhoven/Van+der+Valk+Hotel+Eindhoven/Aalsterweg,+Eindhoven", note:"Broad corridor only. Van der Valk is a forcing waypoint near the Waalre exit; do not enter its car park."},
-      {label:"2 · Residential practice area — orientation only", href:"https://www.google.com/maps/search/?api=1&query=Stratum,+Eindhoven", note:"Low confidence. The narration does not establish the local street names, so this opens the broader area instead of inventing a turn-by-turn route."},
+      {label:"2 · Residential practice area — orientation only", href:"https://www.google.com/maps/dir/Waalre,+Waalre/Aalsterweg,+Eindhoven", note:"Low confidence. The video confirms the Waalre exit and a turn towards Eindhoven, but not which district the quiet-street block sits in. This opens the Waalre→Aalsterweg corridor it runs off, rather than naming a neighbourhood the evidence does not establish."},
       {label:"3 · Broad return to the CBR", href:"https://www.google.com/maps/dir/Aalsterweg,+Eindhoven/CBR+Examencentrum+Eindhoven,+Hoevenweg+20,+Eindhoven", note:"Approximate. The video uses navigation and the exact selected return path could not be proven."}
     ],
     timeline:[
