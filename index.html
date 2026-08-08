@@ -135,6 +135,24 @@
   .btn.plus:active{transform:scale(.97)}
   .maps-hint{font-size:12px;color:var(--markering-dim);margin-top:10px}
 
+  .source-card{
+    margin-top:14px;padding:12px 14px;border-radius:9px;background:var(--asfalt);
+    border:1px solid var(--asfalt-lichter);font-size:12.5px;color:var(--markering-dim);
+  }
+  .source-card strong{display:block;color:var(--markering);font-size:13px;margin-bottom:4px}
+  .source-card p{margin-top:4px}
+  .source-label{display:inline-block;margin-top:7px;padding:2px 7px;border-radius:99px;border:1px solid var(--geel);color:var(--geel);font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+  .map-segment{margin-top:10px;padding:12px 14px;border-radius:9px;border:1px solid var(--asfalt-lichter);background:rgba(15,76,154,.09)}
+  .map-segment strong{display:block;font-size:13px;margin-bottom:4px}
+  .map-segment p{font-size:12.5px;color:var(--markering-dim);margin-bottom:9px}
+  .video-embed{position:relative;overflow:hidden;width:100%;aspect-ratio:16/9;margin-top:14px;border-radius:10px;background:#0D0F11}
+  .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  details.timeline{margin-top:14px;border:1px solid var(--asfalt-lichter);border-radius:9px;background:var(--asfalt);padding:10px 12px}
+  details.timeline summary{cursor:pointer;font-size:13px;font-weight:800;color:var(--markering)}
+  .timeline-list{list-style:none;margin-top:8px}
+  .timeline-list li{display:grid;grid-template-columns:54px 1fr;gap:9px;padding:6px 0;border-top:1px dashed var(--asfalt-lichter);font-size:12.5px;color:var(--markering-dim)}
+  .timeline-list time{font-variant-numeric:tabular-nums;color:var(--geel);font-weight:800}
+
   textarea.notes{
     width:100%;margin-top:8px;background:var(--asfalt);border:1px solid var(--asfalt-lichter);border-radius:8px;
     color:var(--markering);font:inherit;font-size:13.5px;padding:10px;min-height:64px;resize:vertical;
@@ -249,21 +267,21 @@
   <header>
     <div class="kicker">Oefenroutes · Hoevenweg 20</div>
     <h1>CBR Eindhoven <span class="thin">examroutes</span></h1>
-    <p class="sub">Nine practice loops that cover the terrain examiners actually use around the west-side exam centre. Tap a route, open it in Google Maps, drive it, log it.</p>
+    <p class="sub"><span data-route-total>–</span> unofficial practice routes around the west-side exam centre. Tap a route, review its confidence, open the map, drive it, and log it.</p>
     <div class="matrix" role="status">
       <span class="amber" id="countdown">–</span>
-      <span class="lbl">days until your exam · wed 27 aug</span>
+      <span class="lbl" id="countdown-label">loading exam date</span>
     </div>
   </header>
 
   <div class="note">
-    <strong>Honest bit first:</strong> the CBR doesn't publish official routes and examiners improvise on the day — part of your exam is even self-navigation. So no app can promise "the" route. What <em>is</em> known: driving schools film the loops examiners favour here, and they all run through Zeelst, Meerhoven, Gestel, Veldhoven, Waalre/Aalst and the N2. These nine routes reconstruct that terrain — including the Geldrop navigation leg your instructor uses. Know these areas cold and the real exam will feel like a rerun.
+    <strong>Unofficial reconstructions:</strong> the CBR does not publish fixed exam routes, and an examiner can choose different roads on the day. These <span data-route-total>–</span> cards combine broad practice loops, publisher animations, filmed drives, and one instructor-reported scenario. They are training aids, not guaranteed CBR routes. <strong>Current signs, markings, traffic lights, road layouts, construction and speed limits always take precedence</strong> over this site, an old video, or Google Maps.
   </div>
 
   <div class="sign">
     <h2>ℹ Start &amp; finish — every route</h2>
     <p><strong>CBR Examencentrum Eindhoven</strong><br>Hoevenweg 20, 5652 AW Eindhoven</p>
-    <p>Exam ≈ 55 min total: eye test (read a plate at ±25 m), car-control questions, then ±35 min driving — part of it on your own with navigation. You're scored on <strong>vlot, veilig, zelfstandig</strong> (brisk, safe, independent). Parking on site; lesson cars have priority. Afterwards you review the ride with the examiner using a self-reflection form — and if it's a no, a retake is at least two weeks out, so the 27th is the one to nail.</p>
+    <p>The complete practical exam takes about <strong>55 minutes</strong>, including introductions, an eyesight check, preparation and the result discussion. The drive itself is about <strong>35 minutes</strong> and includes independent navigation. You complete a self-reflection form before the drive and discuss it afterwards. On the CBR site, exam vehicles have priority only in the designated exam parking spaces. <a href="https://www.cbr.nl/nl/rijbewijs-halen/auto/praktijkexamen-auto/hoe-gaat-het-praktijkexamen-auto" target="_blank" rel="noopener noreferrer">Check the current CBR exam explanation ↗</a></p>
   </div>
 
   <section id="routes">
@@ -273,36 +291,36 @@
   </section>
 
   <section id="plan">
-    <div class="sec-head"><h2>Plan to the 27th</h2><span class="count">follows the countdown</span></div>
+    <div class="sec-head"><h2>Plan to the exam</h2><span class="count" id="plan-date">follows the countdown</span></div>
     <div class="plan" id="plan-body"></div>
-    <div class="stat"><span class="big">≈ 50%</span>of Dutch candidates pass the practical first try — a rate that's been flat for five years, and manual-shift candidates clearly outscore automatic ones. The variable isn't luck, it's whether the terrain feels familiar. That's the whole point of this page.</div>
+    <div class="stat"><strong>Practise for transfer, not memorisation.</strong> Maps may choose another street and the examiner may improvise. Use every loop to rehearse observation, speed choice, lane position and calm rerouting.</div>
   </section>
 
   <section id="navdrill">
-    <div class="sec-head"><h2>De navigatieopdracht</h2><span class="count">your known start point</span></div>
+    <div class="sec-head"><h2>De navigatieopdracht</h2><span class="count">instructor-reported scenario</span></div>
     <div class="sign" style="margin-top:0">
       <h2>📍 NH Geldrop · Bogardeind 219</h2>
-      <p>The car park where the examiner sets up the navigation and hands the route over to you. Roughly 12 km east of the CBR, right beside the A67.</p>
+      <p>Your instructor reported this car park as a useful navigation-start scenario. It is <strong>not an official or guaranteed CBR stop</strong>. Treat it as a realistic place to practise switching from directions to independent navigation.</p>
       <p>From here you're scored on <strong>zelfstandigheid</strong> — driving safely while finding your own way — not on taking the perfect road. A missed turn costs nothing if you handle it calmly. Drill both ways home until neither can surprise you.</p>
     </div>
-    <div class="man" style="margin-top:14px"><strong>Return A · Highway home (the fast one)</strong><p>Bogardeind → A67 westbound → Knooppunt Leenderheide → N2/Randweg north → exit for Croy / Noord-Brabantlaan → Hoevenweg. Tests merging, the interchange lane choice and a motorway-to-city transition. Expect this one if the examiner wants speed and decisiveness.</p>
-      <div class="route-actions"><a class="btn maps" href="https://www.google.com/maps/dir/?api=1&origin=NH%20Geldrop%2C%20Bogardeind%20219%2C%20Geldrop&destination=CBR%20Examencentrum%2C%20Hoevenweg%2020%2C%20Eindhoven&travelmode=driving&waypoints=A67%2C%20Eindhoven%7CN2%2C%20Eindhoven" target="_blank" rel="noopener">Open highway return ↗</a></div>
+    <div class="man" style="margin-top:14px"><strong>Return A · Highway practice</strong><p>Bogardeind → A67 westbound → Knooppunt Leenderheide → N2/Randweg north → exit for Croy / Noord-Brabantlaan → Hoevenweg. This option practises merging, interchange lane choice and a motorway-to-city transition.</p>
+      <div class="route-actions"><a class="btn maps" href="https://www.google.com/maps/dir/?api=1&origin=NH%20Geldrop%2C%20Bogardeind%20219%2C%20Geldrop&destination=CBR%20Examencentrum%2C%20Hoevenweg%2020%2C%20Eindhoven&travelmode=driving&waypoints=A67%2C%20Eindhoven%7CN2%2C%20Eindhoven" target="_blank" rel="noopener noreferrer">Open highway return ↗</a></div>
     </div>
-    <div class="man"><strong>Return B · City home (the technical one)</strong><p>Bogardeind → Geldropseweg → through Stratum and the Ring → Noord-Brabantlaan → Hoevenweg. Traffic lights, bus lanes, cyclists and junction after junction. Slower, and far more places to lose points — which is exactly why you practise it.</p>
-      <div class="route-actions"><a class="btn maps" href="https://www.google.com/maps/dir/?api=1&origin=NH%20Geldrop%2C%20Bogardeind%20219%2C%20Geldrop&destination=CBR%20Examencentrum%2C%20Hoevenweg%2020%2C%20Eindhoven&travelmode=driving&waypoints=Geldropseweg%2C%20Eindhoven%7CStratumsedijk%2C%20Eindhoven%7CNoord-Brabantlaan%2C%20Eindhoven" target="_blank" rel="noopener">Open city return ↗</a></div>
+    <div class="man"><strong>Return B · City practice</strong><p>Bogardeind → Geldropseweg → through Stratum and the Ring → Noord-Brabantlaan → Hoevenweg. This option adds traffic lights, bus lanes, cyclists and frequent junction decisions.</p>
+      <div class="route-actions"><a class="btn maps" href="https://www.google.com/maps/dir/?api=1&origin=NH%20Geldrop%2C%20Bogardeind%20219%2C%20Geldrop&destination=CBR%20Examencentrum%2C%20Hoevenweg%2020%2C%20Eindhoven&travelmode=driving&waypoints=Geldropseweg%2C%20Eindhoven%7CStratumsedijk%2C%20Eindhoven%7CNoord-Brabantlaan%2C%20Eindhoven" target="_blank" rel="noopener noreferrer">Open city return ↗</a></div>
     </div>
     <div class="man"><strong>How to practise this</strong><p>Ask your instructor to drop you at that car park and then say nothing. Set the navigation to Hoevenweg 20 yourself and drive home with no help — twice, once each way. The skill isn't memorising the roads; it's staying calm and safe while a voice tells you things a second too late.</p></div>
   </section>
 
   <section id="hotspots">
-    <div class="sec-head"><h2>Examiner favourites</h2><span class="count">the spots people fail on</span></div>
-    <div class="hotspot"><strong>Hovenring (Noord-Brabantlaan × Heerbaan × Meerhovendreef)</strong>The famous floating bicycle roundabout. Cars circulate below while the bike ring hovers above — lane choice on approach is everything, and it sits minutes from the CBR, so expect it early in your exam. Routes 2, 3 &amp; 4 cross it.</div>
-    <div class="hotspot"><strong>Signalised roundabouts</strong>Eindhoven's speciality: multi-lane roundabouts <em>with traffic lights</em> and cyclists who usually have priority. A green light does not cancel the zebra/bike crossing on exit. Scan the crossing every single exit.</div>
+    <div class="sec-head"><h2>Practice hotspots</h2><span class="count">situations worth rehearsing</span></div>
+    <div class="hotspot"><strong>Hovenring (Noord-Brabantlaan × Heerbaan × Meerhovendreef)</strong>The floating bicycle roundabout separates much of the bicycle flow above the car junction. Read lane arrows and signals early and keep checking for cyclists where routes meet again. Routes 2, 3 &amp; 4 pass this area.</div>
+    <div class="hotspot"><strong>Signalised and multi-lane roundabouts</strong>Priority is determined by the signs, shark teeth, markings and signals at that specific junction—not by a blanket “traffic on the roundabout” rule. Choose your lane early, obey the local controls, scan each exit and indicate right before leaving.</div>
     <div class="hotspot"><strong>Flight Forum roundabouts (airport)</strong>Big, busy, two-lane, full of taxis and hurried drivers. Pick your lane before entering, hold it, signal your exit.</div>
-    <div class="hotspot"><strong>Knooppunt Leenderheide (A2 × A67 × N2)</strong>The interchange on the way to Geldrop, and the biggest lane decision of the ride. Three motorways separate here; the wrong lane commits you to Venlo or Antwerpen. Read the gantries early, pick the lane early, then hold it. Route 9 crosses it.</div>
+    <div class="hotspot"><strong>Knooppunt Leenderheide (A2 × A67 × N2)</strong>Several major roads separate here. Read the gantries early, choose a lane based on the current signs, then hold it unless a safe change is needed. Route 9 crosses it.</div>
     <div class="hotspot"><strong>N2 parallel lanes (weven)</strong>The Randweg's local N2 lanes mean short merges, weaving traffic and exits that come fast. Mirror–signal–shoulder check, commit, keep your speed up.</div>
     <div class="hotspot"><strong>Bus lanes on Noord-Brabantlaan</strong>HOV lanes run along it. Never use them, and watch for buses getting priority at lights.</div>
-    <div class="hotspot"><strong>30 km/h zones &amp; uitritconstructies</strong>Zeelst, Hanevoet, Bennekel, Grasrijk: brick streets, exit constructions (you have priority leaving them — but pedestrians crossing the sidewalk you cross don't yield to you), and right-of-way from the right. Crawl the speed, exaggerate the head movement.</div>
+    <div class="hotspot"><strong>30 km/h zones &amp; uitritconstructies</strong>Zeelst, Hanevoet, Bennekel and Grasrijk contain brick streets, speed zones and exit constructions. Leaving an <em>uitrit</em> or <em>uitritconstructie</em> is a special manoeuvre: let <strong>all other traffic</strong> go first, including pedestrians crossing the pavement. At equal unsigned junctions, traffic from the right goes first.</div>
   </section>
 
   <section id="carvragen">
@@ -337,17 +355,17 @@
   </section>
 
   <section id="verrichtingen">
-    <div class="sec-head"><h2>Bijzondere verrichtingen</h2><span class="count">3 assignments · 8 techniques</span></div>
-    <div class="man"><strong>How the system works</strong><p>The exam has three assignments — <em>omkeeropdracht</em> (turn the car around), <em>parkeeropdracht</em> (park as close as possible to a named spot) and <em>stopopdracht</em> (stop tightly behind another vehicle). You get <strong>two of the three, and at least one must involve reversing</strong>. The hellingproef is an occasional extra. The examiner names the goal; <strong>you choose the place and the method — and that choice is itself scored.</strong> Passed these at a tussentijdse toets? Then you're exempt at the exam. The 8 techniques below are your toolbox.</p></div>
+    <div class="sec-head"><h2>Bijzondere verrichtingen</h2><span class="count">2 tested · 8 useful practice techniques</span></div>
+    <div class="man"><strong>Official requirement vs practice toolbox</strong><p>The current CBR Rijprocedure B says the examiner assesses <strong>two special manoeuvres, with at least one involving reversing</strong>. The eight cards below are a broader practice toolbox; they are not eight mandatory test items. During every manoeuvre, observation and yielding to other traffic remain essential. A valid exemption earned at a <em>tussentijdse toets</em> applies to the <strong>first practical exam after that test</strong>, subject to the CBR's current conditions. <a href="https://www.cbr.nl/nl/service/nl/artikel/rijprocedure-b-printversie" target="_blank" rel="noopener noreferrer">Read Rijprocedure B ↗</a> · <a href="https://www.cbr.nl/nl/rijbewijs-halen/auto/praktijkexamen-auto/tussentijdse-toets-doen" target="_blank" rel="noopener noreferrer">Check the tussentijdse-toets rules ↗</a></p></div>
     <div class="man"><strong>1 · Recht achteruitrijden — straight reverse</strong><p>Walking pace, primary view through the rear window, kerb about 30 cm away, constant scanning all around.</p><p class="waar"><b>Waar hier:</b> quiet straight stretches — Croy &amp; De Hurk side streets, Grasrijk's new grid.</p></div>
     <div class="man"><strong>2 · Achteruit een bocht — reverse around a corner</strong><p>Keep the kerb distance constant through the arc, steer in millimetres, and give way to absolutely everything — you're the intruder here.</p><p class="waar"><b>Waar hier:</b> wide, quiet corners — business-park junctions and the Hanevoet loops.</p></div>
     <div class="man"><strong>3 · Steken — three-point turn</strong><p>Full lock left to the far kerb, reverse on full right lock, drive off. Look before every direction change; traffic in the street has priority over you throughout.</p><p class="waar"><b>Waar hier:</b> mid-width residential streets — Bennekel, Ekenrooi, the Zeelst core.</p></div>
-    <div class="man"><strong>4 · Halve draai — one-arc U-turn</strong><p>Only where the street is wide enough to make it in one; decide before you start, then commit — stalling broadside is the fail mode.</p><p class="waar"><b>Waar hier:</b> broad quiet streets — business parks and Veldhoven's wider woonstraten.</p></div>
+    <div class="man"><strong>4 · Halve draai — one-arc U-turn</strong><p>Only where the street is wide enough to make it in one; decide before you start, then commit without obstructing other traffic.</p><p class="waar"><b>Waar hier:</b> broad quiet streets — business parks and Veldhoven's wider woonstraten.</p></div>
     <div class="man"><strong>5 · Vakparkeren — bay park (forward or reverse)</strong><p>Your choice unless specified; reversing in gives the safer exit later. Mirror on the bay line, slow wheels + fast steering, scan mirror–shoulder–mirror. A calm visible correction beats a lucky swing.</p><p class="waar"><b>Waar hier:</b> Grasrijk's marked bays, Zeelst around the shops and church, Citycentrum edges — and very often the CBR car park itself at the finish.</p></div>
     <div class="man"><strong>6 · Fileparkeren — parallel park</strong><p>Level with the front car, about a metre out; reverse until your rear wheel is at their bumper, full lock in, 45°, lock out, creep straight. A second go is fine — hindering traffic or not looking is what costs.</p><p class="waar"><b>Waar hier:</b> streets with parked rows — Bennekel, Zeelst, Aalst/Ekenrooi.</p></div>
     <div class="man"><strong>7 · Stopopdracht — precision stop</strong><p>Stop as short as possible behind a parked vehicle (left or right side both allowed), secure the car, then pull away with the full look-around ritual.</p><p class="waar"><b>Waar hier:</b> any calm street with kerbside cars — usually in the same quiet pocket as your other assignment.</p></div>
     <div class="man"><strong>8 · Hellingproef — hill start</strong><p>Handbrake on, find the bite, ease off as you feel the nose lift, no roll-back. Asked only occasionally.</p><p class="waar"><b>Waar hier:</b> flat Eindhoven barely has one — at most a viaduct or parking-ramp. Drill the routine once so it's automatic anyway.</p></div>
-    <div class="man"><strong>Is there a location pattern?</strong><p>No published one — the system is deliberately location-free, because <em>you</em> pick the spot and that pick is judged. But three real patterns exist. First: manoeuvres come mid-ride when the examiner steers into a quiet pocket, and on these routes those pockets are Croy/De Hurk, Zeelst, Grasrijk, Hanevoet/Bennekel, Ekenrooi and Veldhoven's woonstraten — so practise the techniques <em>inside</em> those exact areas. Second: parking assignments gravitate to real destinations ("park as close as possible to the entrance of…"), and rides very often end with a park on the CBR terrain — treat the final approach to Hoevenweg as still-scored. Third: since spot choice is the tested skill, drill <em>choosing</em>: an adequate manoeuvre in a well-chosen place beats a perfect one somewhere awkward. The Croy streets are nearly empty after 18:00 and at weekends — rehearse where you'll perform.</p></div>
+    <div class="man"><strong>Choosing safe practice locations</strong><p>The CBR does not publish fixed manoeuvre locations. Quiet streets and car parks in Croy/De Hurk, Zeelst, Grasrijk, Hanevoet/Bennekel, Ekenrooi and Veldhoven can be useful when lawful and not busy, but conditions vary. Ask your instructor to choose a suitable place, avoid obstruction, and keep yielding throughout. Treat the final approach and parking at Hoevenweg as part of the drive until the examiner says it is finished.</p></div>
   </section>
 
   <section id="cheat">
@@ -358,12 +376,12 @@
         <li><b>50</b> — city default (bebouwde kom)</li>
         <li><b>70</b> — only where signed on the big avenues</li>
         <li><b>60 / 80</b> — country lanes / N-roads outside town</li>
-        <li><b>100</b> — motorway by day (06:00–19:00); matrix signs always override</li>
+        <li><b>Motorway</b> — 100 km/h applies by day on most routes, but some sections are signed 80 or 130; roadside and matrix signs decide</li>
       </ul></div>
-      <div class="card"><h3>Priority — the classic fails</h3><ul>
+      <div class="card"><h3>Priority — key observations</h3><ul>
         <li><b>Equal junction:</b> right goes first — constant in Zeelst &amp; Oerle</li>
         <li><b>Leaving an uitrit:</b> you yield to everyone, pavement included</li>
-        <li><b>Roundabouts:</b> yield to traffic on it, signal right on every exit</li>
+        <li><b>Roundabouts:</b> signs, shark teeth, markings and signals decide priority; indicate right when leaving</li>
         <li><b>Zebra:</b> also stop for pedestrians clearly about to cross</li>
         <li><b>Bus pulling out</b> in town: let it go</li>
         <li><b>Yellow signs &amp; markings</b> beat the permanent white ones</li>
@@ -393,22 +411,20 @@
 
   <section>
     <div class="werk">
-      <h2>⚠ Werk in uitvoering — check the week of your exam</h2>
-      <p class="snap">Snapshot: 6 Aug 2026 — reverify in the week of the 27th</p>
-      <p>You're right that Google Maps lags here: its construction markers update slowly while the cones move weekly. So use the Maps links for the <em>route line</em>, and trust the yellow signs on the ground for the truth. What's actually documented right now:</p>
+      <h2>⚠ Roadworks — check immediately before driving</h2>
+      <p class="snap">Sources last reviewed: 8 Aug 2026</p>
+      <p>Exact closures and temporary layouts could not be confirmed during this audit, so earlier dated assertions were removed. Open the live official sources below shortly before each practice drive. Google Maps can lag behind work on the ground: follow current yellow signs, markings, signals and traffic controllers.</p>
       <ul>
-        <li><strong>Sondervick × Antwerpsebaan</strong> (routes 4 &amp; 7): new roundabout under construction — temporary lights, shifted lanes. Yellow markings override white ones.</li>
-        <li><strong>Kempenbaan / De Run corridor</strong> (route 4): the long-running phased works around the ASML–N2 connection keep resurfacing here, often in weekends — expect the layout to differ from what any map shows.</li>
-        <li><strong>A2 south towards Limburg</strong>: weekend closures Echt–Nederweert richting Eindhoven, 21–24 Aug and 28–31 Aug — the second starts the evening <em>after</em> your exam. South of your terrain, but long practice drives that way will hit it, and knock-on traffic can reach the Randweg.</li>
-        <li><strong>A58 Tilburg ↔ Eindhoven</strong>: four weekend closures spread across 2026 — if one lands near the 27th, its detour traffic piles onto the N2. Check the live links in your exam week.</li>
-        <li><strong>How Veldhoven announces works:</strong> no central list — roadside boards and omleidingsborden. If Maps and the yellow signs disagree, the signs win; driving a detour calmly <em>is</em> exam practice.</li>
+        <li><strong>Municipal roads:</strong> check Eindhoven and Veldhoven for local works around Croy, Meerhoven, Veldhoven, Aalst and the residential loops.</li>
+        <li><strong>Motorways and N2:</strong> check Van A naar Beter and Rijkswaterstaat for closures, lane restrictions and matrix-sign information.</li>
+        <li><strong>On the road:</strong> temporary yellow instructions override conflicting permanent white markings. If navigation and the live road layout disagree, reroute calmly and safely.</li>
       </ul>
       <p style="margin-top:10px"><strong>Live sources for the final check:</strong></p>
       <ul>
-        <li><a href="https://www.eindhoven.nl/stad-en-wonen/verkeer/eindhoven-bereikbaar/wegwerkzaamheden-en-verkeershinder" target="_blank" rel="noopener">Gemeente Eindhoven — live roadworks map</a></li>
-        <li><a href="https://vananaarbeter.nl" target="_blank" rel="noopener">Vananaarbeter.nl — national live works planner</a></li>
-        <li><a href="https://www.rijkswaterstaat.nl/wegen/verkeersinformatie-en-werkzaamheden" target="_blank" rel="noopener">Rijkswaterstaat — A2 / N2 / A58 / A67</a></li>
-        <li><a href="https://www.veldhoven.nl/wegwerkzaamheden" target="_blank" rel="noopener">Gemeente Veldhoven — announcements</a></li>
+        <li><a href="https://www.eindhoven.nl/stad-en-wonen/verkeer/eindhoven-bereikbaar/wegwerkzaamheden-en-verkeershinder" target="_blank" rel="noopener noreferrer">Gemeente Eindhoven — live roadworks map</a></li>
+        <li><a href="https://vananaarbeter.nl" target="_blank" rel="noopener noreferrer">Van A naar Beter — national works planner</a></li>
+        <li><a href="https://www.rijkswaterstaat.nl/wegen/verkeersinformatie-en-werkzaamheden" target="_blank" rel="noopener noreferrer">Rijkswaterstaat — A2 / N2 / A58 / A67</a></li>
+        <li><a href="https://www.veldhoven.nl/wegwerkzaamheden" target="_blank" rel="noopener noreferrer">Gemeente Veldhoven — announcements</a></li>
       </ul>
     </div>
   </section>
@@ -419,20 +435,22 @@
   </section>
 
   <footer>
-    <p>Unofficial study tool — not affiliated with or endorsed by the CBR. Built from publicly documented practice routes and local driving-school material (examen-route.nl films seven loops here: Aalst, Gestel, Blaarthem, Rondje Veldhoven, Afrit 29, Zeelst, Meerhoven), CBR exam-format info, and municipal roadworks pages. Steps are a guideline — between waypoints, Google Maps picks the exact turns, and your examiner will improvise anyway. Speed limits change; the signs on the day are always right. Veel succes op de 27e. 🍀</p>
+    <p>Unofficial study tool — not affiliated with or endorsed by the CBR. Route cards are labelled as broad practice loops, publisher reconstructions, video-confirmed reconstructions or instructor-reported scenarios. Google Maps may choose different streets. The current signs, markings, signals, road layout, construction and speed limits always win. Veel succes. 🍀</p>
   </footer>
 
 </div>
 
 <script>
 /* ---------------------------- data ---------------------------- */
+const EXAM_DATE = "2026-08-27";
+const DISPLAY_TIME_ZONE = "Europe/Amsterdam";
 const CBR = "CBR Examencentrum, Hoevenweg 20, Eindhoven";
 
 const ROUTES = [
   {
     id:"zeelst", shield:"1", cls:"n", name:"Zeelst — village warm-up",
     time:"±25 min", difficulty:"Starter", tags:["30-zones","priority from right","exit constructions"],
-    focus:"The gentlest known loop and the closest to the CBR — examiners love it for the opening minutes. Pure village craft: brick streets, parked cars, cyclists everywhere, right-of-way from the right.",
+    focus:"A short practice loop close to the CBR. It covers brick streets, parked cars, cyclists, equal junctions and exit constructions without claiming a fixed exam route.",
     waypoints:["Zeelsterstraat, Eindhoven","Zeelst, Veldhoven","Heerbaan, Veldhoven","Meerveldhovenseweg, Eindhoven"],
     steps:[
       ["Leave the CBR car park, follow Hoevenweg out of the Croy business park","watch the exit construction — traffic on the road has priority"],
@@ -443,8 +461,8 @@ const ROUTES = [
       ["Back into Hoevenweg and park at the CBR","finish with a clean bay park if asked"]
     ],
     hazards:[
-      ["Unmarked junctions in Zeelst","<strong>equal roads = right has priority.</strong> Examiners log every missed one."],
-      ["Exit constructions (uitrit)","leaving one, everyone on the road has priority over you — including cyclists on the crossing path."],
+      ["Unmarked junctions in Zeelst","<strong>equal roads = traffic from the right goes first.</strong> Slow enough to observe and respond."],
+      ["Exit constructions (uitrit)","leaving one is a special manoeuvre: yield to all other traffic, including pedestrians crossing the pavement and cyclists crossing your path."],
       ["Parked-car chicanes","oncoming traffic in your lane's gap has priority if the obstacle is on their side; if it's on yours, you wait."]
     ],
     video:null
@@ -472,7 +490,7 @@ const ROUTES = [
   {
     id:"gestel", shield:"3", cls:"n", name:"Gestel — Hanevoet & Bennekel",
     time:"±30 min", difficulty:"Medium", tags:["residential maze","A2/N2 return","filmed route"],
-    focus:"A documented exam favourite: south under the N2 into the Hanevoet and Bennekel neighbourhoods — tight 30-zones with real right-of-way traps — then back to the CBR via the motorway, so you get city craft and a merge in one loop.",
+    focus:"A publisher-animated practice reconstruction through Hanevoet and Bennekel, followed by an N2 return. Use it to combine residential observation with merging; it is not a published CBR route.",
     waypoints:["Karel de Grotelaan, Eindhoven","Hanevoet, Eindhoven","Bennekel, Eindhoven","N2, Eindhoven"],
     steps:[
       ["From the CBR south towards Karel de Grotelaan","big signalised junctions, filter lanes"],
@@ -480,55 +498,57 @@ const ROUTES = [
       ["Continue into Bennekel","older streets, more parked cars, priority from the right"],
       ["Join the N2 (parallel lanes) northbound","short on-ramp: build speed early, merge decisively"],
       ["Exit for the Noord-Brabantlaan / Croy side","off-ramp queues back up — anticipate"],
-      ["Return to Hoevenweg and the CBR","navigation section often ends on these last streets — stay sharp"]
+      ["Return to Hoevenweg and the CBR","stay observant through the final junctions and parking area"]
     ],
     hazards:[
-      ["Hedge-blind corners in Hanevoet","creep and lean; the examiner watches your head, not just the car."],
-      ["N2 merge","<strong>hesitating on the ramp is a classic fail.</strong> Mirror–signal–shoulder, then commit at speed."],
+      ["Hedge-blind corners in Hanevoet","reduce speed and make a complete, visible observation before proceeding."],
+      ["N2 merge","Build an appropriate speed, use mirror–signal–shoulder checks and merge when a safe gap is available."],
       ["Bennekel rat-runners","locals shortcut fast through here at rush hour; expect the unexpected from the right."]
     ],
-    video:"https://m.youtube.com/watch?v=fRWoFFihS44"
+    video:"https://www.youtube.com/watch?v=fRWoFFihS44",
+    source:{title:"Gestel Eindhoven - CBR Examenroute", channel:"Examenroute", published:"Publisher animation", duration:"2:56", classification:"Publisher reconstruction", confidence:"Broad Hanevoet/Bennekel and A2/N2 corridor; not independently verified turn by turn."}
   },
   {
     id:"veldhoven", shield:"4", cls:"n", name:"Rondje Veldhoven",
     time:"±35 min", difficulty:"Medium+", tags:["Kempenbaan","roundabout series","roadworks risk"],
-    focus:"The big suburban loop: Blaarthem's edge, then Veldhoven's Kempenbaan with its ASML rush-hour traffic, the Citycentrum, and the Sondervick side where a new roundabout is under construction — exactly the kind of fresh situation examiners like to spring on you.",
+    focus:"A broad suburban practice loop through Blaarthem, Kempenbaan, Citycentrum, Sondervick and Heerbaan. Road layouts can change, so verify the live municipal and Rijkswaterstaat sources before driving.",
     waypoints:["Blaarthemseweg, Veldhoven","Kempenbaan, Veldhoven","Citycentrum, Veldhoven","Sondervick, Veldhoven","Heerbaan, Veldhoven"],
     steps:[
       ["From the CBR south-west via Blaarthemseweg into Blaarthem","village-edge road, cyclists in both directions"],
       ["Kempenbaan westbound","heavy commuter flow near De Run/ASML; keep pace, don't dawdle"],
       ["Circle the Citycentrum area","short signalised blocks, pedestrian crossings back-to-back"],
-      ["Down Sondervick","construction zone at the Antwerpsebaan junction — follow the yellow signage, not habit"],
+      ["Down Sondervick","follow the current signs and temporary layout; do not rely on this route's older description"],
       ["Return north via Heerbaan","string of roundabouts: treat each as new, signal every exit"],
       ["Over/past the Hovenring back to the CBR","end-of-route fatigue is where mirrors get forgotten"]
     ],
     hazards:[
       ["Roundabout series on Heerbaan","exiting without a right signal, every time, is silent point-bleeding."],
-      ["Works at Sondervick × Antwerpsebaan","temporary lights and lane shifts. <strong>Yellow markings beat white ones.</strong>"],
+      ["Changeable road layout","check the live roadworks sources and follow temporary yellow instructions where present."],
       ["Kempenbaan rush","between 16:00–18:00 this crawls; leave gaps, no creeping into cycle crossings."]
     ],
-    werk:"Sondervick × Antwerpsebaan roundabout construction plus recurring Kempenbaan/De Run phases — expect temporary lights and shifted lanes; yellow markings beat white.",
+    werk:"Exact current works were not confirmed in this audit. Check the live official sources immediately before driving and follow the temporary road layout.",
     video:null
   },
   {
     id:"aalst", shield:"5", cls:"a", name:"Aalst via the A2",
-    time:"±35 min", difficulty:"Full test", tags:["motorway","N69 through-road","filmed route"],
-    focus:"The documented motorway loop: down the A2/N2, off at Waalre, through Aalst's busy N69 corridor and the Ekenrooi neighbourhood, then back up the motorway. This is the closest public reconstruction of a complete 35-minute exam.",
+    time:"±35 min", difficulty:"Full loop", tags:["motorway","Aalst corridor","publisher animation"],
+    focus:"A publisher-animated motorway practice loop: A2/N2, Waalre/Aalst, Ekenrooi and a motorway return. The former N69 wording was removed because the current road designation and layout must be checked locally.",
     waypoints:["N2, Eindhoven","Aalst, Waalre","Ekenrooi, Waalre","A2, Waalre"],
     steps:[
       ["From the CBR onto the N2 southbound","parallel-lane weaving straight away — mirrors working overtime"],
       ["Follow A2/N2 south, exit for Waalre","exit comes quickly after the interchange; get right in time"],
-      ["Into Aalst along the Eindhovenseweg (N69)","busy through-road: bus stops, crossings, turning traffic"],
+      ["Into Aalst along the Eindhovenseweg corridor","check the current road name, signs and speed limit; expect bus stops, crossings and turning traffic"],
       ["Loop through Ekenrooi","quiet 30-zone contrast right after a fast road — force the speed down"],
-      ["Back onto the A2 northbound towards Eindhoven","on-ramp merge at full speed, then keep 100 km/h daytime unless signed otherwise"],
+      ["Back onto the A2 northbound towards Eindhoven","build an appropriate merging speed, then follow current roadside and matrix signs"],
       ["Exit at the Randweg for the CBR side and finish on Hoevenweg","the last two junctions after a motorway stretch catch tired eyes"]
     ],
     hazards:[
-      ["Speed transitions","100 → 70 → 50 → 30 within minutes. <strong>Late braking into Aalst is a known fail spot.</strong>"],
-      ["N69 pedestrian crossings","long straight road tempts speed; zebras appear between parked cars."],
-      ["Matrix signs on the A2","red cross or lowered limit overrides everything — examiners check you saw it."]
+      ["Speed transitions","Fast-road and built-up-area limits can change within minutes. Read every current sign and reduce speed before entering the lower-limit area."],
+      ["Eindhovenseweg crossings","a long straight corridor can tempt excess speed; keep scanning for crossings and people near the kerb."],
+      ["Matrix signs on the A2","a red cross closes the lane and a displayed limit applies; respond early and safely."]
     ],
-    video:"https://m.youtube.com/watch?v=fVX1pYDKmws"
+    video:"https://www.youtube.com/watch?v=fVX1pYDKmws",
+    source:{title:"Aalst Eindhoven - CBR Examenroute", channel:"Examenroute", published:"Publisher animation", duration:"2:59", classification:"Publisher reconstruction", confidence:"Broad A2/Waalre/Aalst/Ekenrooi corridor; current street designations and small turns need local verification."}
   },
   {
     id:"afrit29", shield:"6", cls:"a", name:"Afrit 29 & De Hurk",
@@ -546,29 +566,29 @@ const ROUTES = [
     hazards:[
       ["One-exit motorway block","signalling too late for the exit ruins an otherwise perfect merge."],
       ["Trucks in De Hurk","never sit beside a truck at a junction; they turn right from the middle."],
-      ["Wide empty roads","speeding on Meerenakkerweg is the classic 'relaxed too soon' mistake."]
+      ["Wide empty roads","the road can feel faster than the signed limit; check speed without losing observation."]
     ],
     video:null
   },
   {
     id:"oerle", shield:"7", cls:"n", name:"Oerle & the country roads",
-    time:"±30 min", difficulty:"Medium", tags:["60 km/h zones","cyclists on the road","narrow lanes"],
-    focus:"The terrain the other loops miss: rural roads west of Veldhoven. Sixty-zones with no centre line, cyclists sharing the carriageway, soft verges and the odd tractor. Examiners use buitenwegen to test speed choice and overtaking judgment — skills city loops never touch.",
+    time:"±30 min", difficulty:"Medium", tags:["rural speed zones","cyclists on the road","narrow lanes"],
+    focus:"Rural-road practice west of Veldhoven: possible 60-zones, roads without centre lines, cyclists sharing the carriageway, soft verges and agricultural traffic. Confirm every current speed sign rather than treating 60 as universal.",
     waypoints:["Sondervick, Veldhoven","Oerle, Veldhoven","Zandoerle, Veldhoven","Heerbaan, Veldhoven"],
     steps:[
       ["From the CBR via the Hovenring side into Veldhoven","standard signalised approach — treat it fresh every time"],
-      ["Down Sondervick towards Oerle","50 → 30 transition through Zilverackers; construction possible here"],
+      ["Down Sondervick towards Oerle","watch for current zone changes and any temporary construction layout"],
       ["Through the Oerle village core","church-square streets, priority from the right"],
-      ["Out to Zandoerle and the surrounding lanes","60 km/h, no markings: 60 is a limit, not a target — drop speed for cyclists and oncoming traffic"],
+      ["Out to Zandoerle and the surrounding lanes","follow the current signed limit; a limit is not a target, so reduce speed for cyclists, sight distance and oncoming traffic"],
       ["Meet oncoming cars on the narrow stretches","use passing places, stay off the soft verge"],
       ["Return via Heerbaan and the Hovenring to the CBR","back-to-city transition: reset your speed and scanning"]
     ],
     hazards:[
-      ["Cyclists on the carriageway","<strong>overtake only with full visibility and ±1.5 m of space</strong> — squeezing past is a heavy fault."],
+      ["Cyclists on the carriageway","<strong>overtake only with full visibility and ample safe lateral space</strong>; otherwise wait behind."],
       ["Soft verges (bermen)","two wheels in the grass while meeting a car is sloppy; slow down early instead."],
-      ["Invisible speed transitions","the 60-zone sign appears once. Miss it and you're doing 80 in a 60."]
+      ["Speed-zone transitions","a zone sign may appear only at the entrance. Read every sign and do not infer the limit from road width."]
     ],
-    werk:"The Sondervick construction zone sits mid-route — treat the Zilverackers stretch as changeable week to week and follow the omleiding if one appears.",
+    werk:"Treat the Sondervick/Zilverackers stretch as changeable. Check the live Veldhoven source and follow any current diversion signs.",
     video:null
   },
   {
@@ -582,7 +602,7 @@ const ROUTES = [
       ["Cross towards Meerveldhoven","watch the cycle crossings around the N2 viaduct"],
       ["Down the Burgemeester van Hoofflaan","shopping spine: zebras in series, buses, 30 where signed"],
       ["Loop back north via Heerbaan","the roundabout series again — signal every exit"],
-      ["Hovenring and home to Hoevenweg","the quiet pocket before the CBR is a favourite for one last manoeuvre"]
+      ["Hovenring and home to Hoevenweg","the quiet pocket can be useful for instructor-led manoeuvre practice when conditions permit"]
     ],
     hazards:[
       ["Speed transitions in series","<strong>50→30→50 within a few hundred metres</strong> — the sign appears once; your speed changes the moment it does."],
@@ -594,65 +614,177 @@ const ROUTES = [
   {
     id:"geldrop", shield:"9", cls:"a", name:"NH Geldrop — de navigatieopdracht",
     time:"±35 min", difficulty:"Full test", tags:["A67","Knooppunt Leenderheide","navigation start","instructor intel"],
-    focus:"Straight from your own lessons, and the most important loop here: east across the city, through Knooppunt Leenderheide onto the A67, off at Geldrop to the NH Geldrop car park on the Bogardeind — where the examiner stops and sets up the navigation. Everything up to the hotel is examiner-directed. Everything after it is you, alone, finding your way home. This is the only part of the exam with a known start point, so it's the only part you can rehearse exactly.",
+    focus:"An instructor-reported practice scenario: east through Knooppunt Leenderheide onto the A67, then to NH Geldrop before navigating back to the CBR. It is not an official or verified CBR route, and the hotel is not a guaranteed exam stop.",
     waypoints:["N2, Eindhoven","A67, Geldrop","NH Geldrop, Bogardeind 219, Geldrop","Geldropseweg, Eindhoven"],
     steps:[
       ["Leave the CBR on Hoevenweg and join the N2/Randweg southbound","parallel lanes straight away — weave, hold speed, mirrors constantly"],
       ["Follow the Randweg south towards Knooppunt Leenderheide","<em>read the overhead gantries 500 m out</em>: this is where A2, A67 and the N2 all split"],
       ["Take the A67 eastbound (richting Venlo)","the freight corridor to Germany — lorries everywhere, stay out of their blind spots"],
       ["Exit for Geldrop and drop onto the Bogardeind","motorway speed to 50 in seconds; brake early and hard on the ramp"],
-      ["Into the NH Geldrop car park, Bogardeind 219","the examiner stops here and sets up the navigation — take the pause, breathe, reset"],
-      ["Navigation on: find your own way back to Hoevenweg 20","two sane ways home — the A67/N2 highway return or the city return via Geldropseweg. Practise both."]
+      ["Into the NH Geldrop car park, Bogardeind 219","for this instructor-reported exercise, stop safely and set navigation before continuing"],
+      ["Navigation on: find your own way back to Hoevenweg 20","practise a highway return and a city return, but follow the current navigation and road signs rather than memorising either."]
     ],
     hazards:[
-      ["Knooppunt Leenderheide","<strong>the single biggest lane decision of your exam.</strong> A2, A67 and N2 tangle here — the wrong lane sends you towards Venlo or Antwerpen. Signs early, lane early, commit."],
+      ["Knooppunt Leenderheide","A2, A67 and N2 separate here. Read current signs early, choose the correct lane and avoid last-second changes."],
       ["A67 trucks","a main freight route: never linger alongside a lorry, and expect them merging at the on-ramps."],
-      ["Bogardeind after the exit","100 → 50 with cycle paths and bus stops appearing immediately. Speed down before the roundabout, not on it."],
-      ["Missing a turn while navigating","<strong>not a fail.</strong> Braking suddenly or panicking is. Carry on safely, let the navigation reroute, keep breathing."]
+      ["Bogardeind after the exit","the environment changes quickly from motorway to cycle paths and bus stops. Read the current lower-limit signs and reduce speed in time."],
+      ["Missing a turn while navigating","continue safely and let navigation reroute rather than braking suddenly or making an unsafe correction."]
     ],
-    video:null
+    video:null,
+    source:{title:"NH Geldrop navigation practice", channel:"Instructor report", published:"Not an official CBR source", duration:"–", classification:"Instructor-reported scenario", confidence:"Unverified as an exam route; use only as a general navigation exercise."}
   },
   {
-    id:"stratum", shield:"10", cls:"a", name:"Stratum & Aalsterweg — via de Ring",
-    time:"±25 min", difficulty:"Medium+", tags:["N2 ring","Floraplein","3 verrichtingen","filmed route"],
-    focus:"The east side, reconstructed from a 2023 filmed ride and cross-checked against a second reading of the same video: out of Croy onto the N2 ring, off towards Waalre, north up Aalsterweg, then the residential pockets around Eikenburglaan and Floraplein before the long run home through Gestel. The only loop here that pairs ring-road speed with sustained priority-from-the-right — and the filmed ride fits three verrichtingen into it. The big roads are solid; the small residential turns are an approximate practice pocket, not a fixed line.",
+    id:"stratum", shield:"10", cls:"a", name:"Weber 2023 — Waalre, Eikenburg & Croy",
+    time:"27:36 video", difficulty:"Video reconstruction", tags:["N2 / exit 33","Floraplein","manoeuvres","video-confirmed"],
+    focus:"Reconstructed from Verkeersschool Weber's 2023 drive. The major corridor is visible in the video: CBR → N2 → exit 33 Waalre → Aalsterweg/Eikenburg area → Floraplein → Antoon Coolenlaan → Karel de Grotelaan → Croy → CBR. The small turns near Eikenburglaan, Sassenlaan and Schweitzerlaan remain approximate.",
     waypoints:["N2, Eindhoven","Aalsterweg, Eindhoven","Floraplein, Eindhoven","Antoon Coolenlaan, Eindhoven","Karel de Grotelaan, Eindhoven"],
     steps:[
-      ["Leave the CBR along Hoevenweg and out through Croy","the business-park exit construction: everyone on the road has priority over you"],
-      ["Left at the lights, then onto the N2 southbound","take the second entrance after the viaduct — the first road is not the ramp"],
-      ["Ring south, then off at the Waalre exit","80 km/h parallel lanes, short ramp: build speed and commit"],
-      ["Left onto Aalsterweg and back north towards Eindhoven","use the rightmost of the two left-turn lanes at the end of the off-ramp"],
-      ["Right into the Eikenburglaan side streets","<em>approximate</em> — the filmed ride wanders here. Treat it as a 30-zone practice pocket rather than a route to copy turn for turn"],
-      ["Leenderweg to Floraplein, out on Floralaan West","multi-lane roundabout: lane chosen before you enter, signal every exit"],
-      ["Local loop around Sassenlaan and Schweitzerlaan","<em>approximate</em> — this is the verrichtingen block; the filmed ride does a parallel park and a straight reverse in here"],
-      ["Antoon Coolenlaan, Bayeuxlaan and Karel de Grotelaan home","bus and HOV lanes on the way back: stay out of the red. Finish through Croy and Langendijk into Hoevenweg"]
+      ["Leave the CBR and turn left from Hoevenweg","leaving an exit construction means all other traffic goes first, including pedestrians"],
+      ["Turn left at the lights and join the N2 southbound","the video uses the second entrance after the viaduct; verify the current signs and layout"],
+      ["Take exit 33 Waalre and turn left towards Eindhoven","the Van der Valk waypoint in map segment 1 only forces the N2/exit-33 corridor—do not enter its car park"],
+      ["Follow Aalsterweg into the Eikenburglaan area","the main corridor is video-confirmed; the following small residential turns are approximate"],
+      ["Continue via Leenderweg to Floraplein and Floralaan West","choose the lane from current arrows and indicate right before leaving"],
+      ["Practise the local Sassenlaan/Schweitzerlaan pocket","approximate; the video includes a parking exercise and straight reversing here"],
+      ["When instructed, set navigation back to the CBR","the filmed return uses Antoon Coolenlaan, Bayeuxlaan and Karel de Grotelaan"],
+      ["Continue through Bouvigne, Croy, Cranendonck and Langendijk","follow current signs and finish safely at Hoevenweg"]
     ],
     hazards:[
-      ["Floraplein multi-lane roundabout","<strong>your lane is decided before you enter.</strong> Changing your mind inside it is where this route is lost."],
-      ["N2 ramps, both ends","hesitate on the on-ramp and you fail the merge; carry ring speed into town and you fail the limit. Two opposite errors, ninety seconds apart."],
-      ["The residential pockets are approximate","the small turns around Eikenburglaan, Sassenlaan and Schweitzerlaan could not be pinned down from the video. Drive the area, not a line — <strong>equal roads mean right has priority</strong> throughout."],
-      ["The video is from 2023","riders report parts of Hoevenweg and Croy are now 30 km/h where the video implies faster. <strong>The signs on the road win, always.</strong>"]
+      ["Floraplein","use the signs, shark teeth, signals, lane arrows and markings at the junction; do not rely on a blanket roundabout priority rule."],
+      ["N2 ramps","build an appropriate merging speed and read current matrix signs; the video's displayed conditions are historical."],
+      ["Approximate residential pockets","the small turns around Eikenburglaan, Sassenlaan and Schweitzerlaan could not be proven. Drive the area, not a memorised line, and apply the current junction rules."],
+      ["2023 recording","road layouts and limits may have changed. Current signs and markings take precedence."]
     ],
-    video:"https://www.youtube.com/watch?v=6ZB5WavBZQg"
+    video:"https://www.youtube.com/watch?v=6ZB5WavBZQg",
+    videoId:"6ZB5WavBZQg",
+    source:{title:"MOEILIJKE EXAMENROUTE EINDHOVEN", channel:"Verkeersschool Weber", published:"28 Sep 2023", duration:"27:36", classification:"Video-confirmed reconstruction", confidence:"High for the named main-road corridor; medium to low for the Eikenburglaan/Sassenlaan/Schweitzerlaan turns."},
+    mapSegments:[
+      {label:"1 · CBR → N2 exit 33 → Eikenburglaan → Floraplein", href:"https://www.google.com/maps/dir/CBR+Examencentrum+Eindhoven,+Hoevenweg+20,+Eindhoven/Van+der+Valk+Hotel+Eindhoven/Eikenburglaan,+Eindhoven/Floraplein,+Eindhoven", note:"Major corridor: high confidence. Van der Valk is only a forcing waypoint for N2/exit 33; stay on the public road and do not enter the hotel car park."},
+      {label:"2 · Floraplein → residential manoeuvre pocket → Antoon Coolenlaan", href:"https://www.google.com/maps/dir/Floraplein,+Eindhoven/Sassenlaan,+Eindhoven/Schweitzerlaan,+Eindhoven/Aalsterweg,+Eindhoven/Antoon+Coolenlaan,+Eindhoven", note:"Approximate. These small turns could not be fully resolved from the video and Maps may recalculate them."},
+      {label:"3 · Antoon Coolenlaan → Karel de Grotelaan → Croy → CBR", href:"https://www.google.com/maps/dir/Antoon+Coolenlaan,+Eindhoven/Karel+de+Grotelaan+4,+Eindhoven/Croy,+Eindhoven/CBR+Examencentrum+Eindhoven,+Hoevenweg+20,+Eindhoven", note:"Named return corridor: medium-high confidence. Follow current navigation, signs and any diversions."}
+    ],
+    timeline:[
+      ["01:34","Leave the CBR and turn left"],
+      ["02:40","Turn left at the traffic lights"],
+      ["03:00","Use the second N2 entrance after the viaduct"],
+      ["04:38","Prepare for the Waalre exit"],
+      ["05:57","Take exit 33 Waalre"],
+      ["07:44","Reach the Eikenburglaan area"],
+      ["11:48","Floraplein: turn left / fourth exit in the video"],
+      ["12:37","Sassenlaan area"],
+      ["13:20","Parking exercise"],
+      ["16:49","Straight-reversing exercise begins"],
+      ["17:53","Set navigation to the CBR"],
+      ["18:16","Antoon Coolenlaan"],
+      ["23:02","Karel de Grotelaan"],
+      ["24:00","Return through Bouvigne, Croy, Cranendonck and Langendijk"]
+    ]
+  },
+  {
+    id:"weber-2022-waalre", shield:"11", cls:"a", name:"Weber 2022 — Waalre residential practice",
+    time:"20:51 video", difficulty:"Approximate video reconstruction", tags:["Waalre exit","residential practice","navigation return"],
+    focus:"A second, separate Weber drive from 2022. The video confirms departure from the CBR, a fast-road section towards the Waalre exit, a residential practice block with parking/reversing, a stop to set navigation, and a return to the CBR. The narration does not prove the small residential street names, so this card deliberately stays broad.",
+    waypoints:["N2, Eindhoven","Waalre, Waalre","Aalsterweg, Eindhoven"],
+    steps:[
+      ["Leave the CBR and turn left","then turn left towards Waalre as shown in the video"],
+      ["Join the fast-road corridor and follow signs for Waalre","the narrator mentions 80 km/h in the 2022 recording; that is historical context, not a current limit"],
+      ["Take the Waalre exit and turn left at the end","follow current lane arrows, signs and signals"],
+      ["Continue towards Eindhoven and turn into a residential area","exact local streets are unverified; use the video and surroundings only as general practice context"],
+      ["Complete the quiet-street loop and parking/reversing exercise","yield throughout every manoeuvre and stop if another road user is affected"],
+      ["Stop safely and set navigation to the CBR","the exact stop street and the navigation-selected return were not identifiable"],
+      ["Follow navigation back and forward-park at the CBR","continue observing until the drive is clearly finished"]
+    ],
+    hazards:[
+      ["Historical speed reference","the video's spoken 80 km/h is not evidence of today's limit. Follow current roadside and matrix signs."],
+      ["Unverified residential turns","do not copy street names from the 2023 route. Google Maps cannot reproduce an exact line that the evidence does not establish."],
+      ["Leaving exit constructions","yield to all other traffic, including pedestrians on the pavement and crossing cyclists."],
+      ["Navigation return","a reroute is acceptable; sudden braking or an unsafe correction is not."]
+    ],
+    video:"https://www.youtube.com/watch?v=8m2s5_9zujE",
+    videoId:"8m2s5_9zujE",
+    source:{title:"RIJEXAMEN IN EINDHOVEN", channel:"Verkeersschool Weber", published:"5 Jan 2022", duration:"20:51", classification:"Video-confirmed high-level reconstruction", confidence:"High for the overall sequence; low for residential street names, the navigation-set stop and the exact return path."},
+    mapSegments:[
+      {label:"1 · CBR → Waalre exit corridor", href:"https://www.google.com/maps/dir/CBR+Examencentrum+Eindhoven,+Hoevenweg+20,+Eindhoven/Van+der+Valk+Hotel+Eindhoven/Aalsterweg,+Eindhoven", note:"Broad corridor only. Van der Valk is a forcing waypoint near the Waalre exit; do not enter its car park."},
+      {label:"2 · Residential practice area — orientation only", href:"https://www.google.com/maps/search/?api=1&query=Stratum,+Eindhoven", note:"Low confidence. The narration does not establish the local street names, so this opens the broader area instead of inventing a turn-by-turn route."},
+      {label:"3 · Broad return to the CBR", href:"https://www.google.com/maps/dir/Aalsterweg,+Eindhoven/CBR+Examencentrum+Eindhoven,+Hoevenweg+20,+Eindhoven", note:"Approximate. The video uses navigation and the exact selected return path could not be proven."}
+    ],
+    timeline:[
+      ["00:36","Leave the CBR and turn left"],
+      ["01:06","Turn left towards Waalre"],
+      ["02:09","Fast-road section; 80 km/h is spoken in the old video"],
+      ["02:46","Follow signs for Waalre"],
+      ["04:18","Take the Waalre exit"],
+      ["04:52","Turn left at the end of the exit"],
+      ["05:26","Continue towards Eindhoven"],
+      ["06:01","Turn right from the main road"],
+      ["06:40","Take the second left into a narrow street"],
+      ["06:59","Turn right at the end"],
+      ["08:19","Two left turns in the residential block"],
+      ["08:51","Turn right"],
+      ["09:26","Turn left, then right at the end"],
+      ["09:52","Roundabout instruction"],
+      ["10:22","First right, then next left"],
+      ["11:23","Parking/reversing exercise"],
+      ["12:20","Leave an exit construction and turn right"],
+      ["13:33","Right, then next left"],
+      ["13:55","Turn left at the traffic lights"],
+      ["14:51","Stop and set navigation"],
+      ["15:41","Resume the drive"],
+      ["16:25","Roundabout"],
+      ["17:07","Prepare to turn left"],
+      ["17:55","Turn right"],
+      ["18:07","Signal-controlled turn"],
+      ["18:25","Take the second exit"],
+      ["19:10","Turn left towards the CBR"],
+      ["19:37","Forward-park at the CBR"]
+    ]
   }
 ];
 
+/* ---------------------------- helpers ---------------------------- */
+function dateAtNoonUTC(iso){
+  return new Date(iso + "T12:00:00Z");
+}
+function formatIsoDate(iso, options){
+  return new Intl.DateTimeFormat("en-GB", {timeZone:DISPLAY_TIME_ZONE, ...options}).format(dateAtNoonUTC(iso));
+}
+function isoDateInZone(date = new Date()){
+  const values = {};
+  new Intl.DateTimeFormat("en-CA", {
+    timeZone:DISPLAY_TIME_ZONE, year:"numeric", month:"2-digit", day:"2-digit"
+  }).formatToParts(date).forEach(part=>{ if(part.type !== "literal") values[part.type] = part.value; });
+  return values.year + "-" + values.month + "-" + values.day;
+}
+function isoDayNumber(iso){
+  const [year, month, day] = iso.split("-").map(Number);
+  return Date.UTC(year, month - 1, day) / 86400000;
+}
+function addIsoDays(iso, amount){
+  const shifted = new Date((isoDayNumber(iso) + amount) * 86400000);
+  return shifted.toISOString().slice(0, 10);
+}
+function daysUntilExam(){
+  return isoDayNumber(EXAM_DATE) - isoDayNumber(isoDateInZone());
+}
+
+const EXAM_SHORT = formatIsoDate(EXAM_DATE, {weekday:"short", day:"numeric", month:"short"});
+const EXAM_FULL = formatIsoDate(EXAM_DATE, {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+const DAY_BEFORE = addIsoDays(EXAM_DATE, -1);
+
 const CHECKLIST = [
-  "Valid ID packed (the exam can't start without it)",
-  "Drive at least 3 of the 6 routes with your instructor",
-  "Watch the Aalst + Gestel route videos (buttons above) and <a href='https://www.youtube.com/watch?v=8m2s5_9zujE' target='_blank' rel='noopener'>this full Eindhoven exam ride</a>",
-  "Check the roadworks maps for the week of 27 Aug",
-  "Practise all bijzondere verrichtingen: bay park, parallel park, turning, reversing",
-  "Do one full 35-min mock exam with navigation on",
-  "Sleep 8 hours on the 26th — book nothing else that evening",
-  "Arrive at Hoevenweg 20 at least 15 min early",
-  "Rehearse two bijzondere verrichtingen back-to-back until they're boring",
+  "Valid ID packed (the exam cannot start without it)",
+  `Drive at least 3 of the ${ROUTES.length} practice routes with your instructor`,
+  "Review the two full Weber videos and the Aalst + Gestel publisher animations in the route cards",
+  "Check the live official roadworks sources immediately before the final practice drive and exam",
+  "Practise the manoeuvre toolbox; the official test uses two special manoeuvres and at least one involves reversing",
+  "Do one full approximately 35-minute mock drive with navigation on",
+  `Prepare for an early night on ${formatIsoDate(DAY_BEFORE, {day:"numeric", month:"short"})}`,
+  "Agree the arrival time with your instructor and know where the designated exam parking spaces are",
+  "Rehearse two special manoeuvres back-to-back while maintaining full observation",
   "Give your least-practised route (see the plan) one more run in the final week",
-  "Evening before: check the weather — rain means lights on, wipers set, bigger gaps",
+  "Evening before: check the weather and prepare lights, wipers and following distance for the conditions",
   "Drill the binnen & buiten car questions on your actual lesson car (tap-cards above)"
 ];
 
-/* ---------------------------- helpers ---------------------------- */
 function mapsUrl(route){
   const wp = route.waypoints.map(encodeURIComponent).join("%7C");
   return "https://www.google.com/maps/dir/?api=1"
@@ -698,13 +830,19 @@ async function saveState(){
 function flagStorage(){ $("#storage-msg").classList.add("show"); }
 
 /* ---------------------------- render ---------------------------- */
+function renderStaticCopy(){
+  document.querySelectorAll("[data-route-total]").forEach(el=>{ el.textContent = ROUTES.length; });
+  $("#plan-date").textContent = EXAM_FULL;
+}
+
 function renderCountdown(){
-  const exam = new Date(2026,7,27); // 27 Aug 2026
-  const now = new Date(); now.setHours(0,0,0,0);
-  const d = Math.round((exam - now)/86400000);
+  const d = daysUntilExam();
   $("#countdown").textContent = d > 1 ? d : d === 1 ? "1" : d === 0 ? "TODAY" : "done";
-  if(d === 1) document.querySelector(".matrix .lbl").textContent = "day until your exam · wed 27 aug";
-  if(d < 0) document.querySelector(".matrix .lbl").textContent = "exam date passed — hopefully with a 🍀";
+  $("#countdown-label").textContent =
+    d > 1 ? "days until your exam · " + EXAM_SHORT :
+    d === 1 ? "day until your exam · " + EXAM_SHORT :
+    d === 0 ? "exam day · " + EXAM_SHORT :
+    "exam date passed · " + EXAM_SHORT;
 }
 
 function renderRoutes(){
@@ -723,6 +861,7 @@ function renderRoutes(){
             <span class="chip time">${r.time}</span>
             <span class="chip ${r.difficulty.includes("Full")?"hard":""}">${r.difficulty}</span>
             ${r.tags.map(t=>`<span class="chip">${t}</span>`).join("")}
+            <span class="chip">${r.source ? r.source.classification : "Broad practice loop"}</span>
             ${r.werk?`<span class="chip werkchip">🚧 werk</span>`:""}
           </span>
         </span>
@@ -731,21 +870,45 @@ function renderRoutes(){
       </button>
       <div class="route-body" id="body-${r.id}">
         <p class="focus">${r.focus}</p>
+        ${r.source?`
+          <div class="source-card">
+            <strong>${r.source.title}</strong>
+            <p>${r.source.channel} · ${r.source.published}${r.source.duration && r.source.duration !== "–" ? ` · ${r.source.duration}` : ""}</p>
+            <span class="source-label">${r.source.classification}</span>
+            <p><b>Confidence:</b> ${r.source.confidence}</p>
+          </div>`:""}
+        ${r.videoId?`
+          <div class="video-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/${r.videoId}" title="${r.source ? r.source.title : r.name}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>`:""}
         <h3>Route — follow in order</h3>
         <ol class="steps">
           ${r.steps.map(s=>`<li>${s[0]}${s[1]?` — <em>${s[1]}</em>`:""}</li>`).join("")}
         </ol>
-        <h3>Where points get lost here</h3>
+        <h3>Risk and observation notes</h3>
         <ul class="hazards">
           ${r.hazards.map(h=>`<li>${h[0]}: ${h[1]}</li>`).join("")}
         </ul>
-        ${r.werk?`<p class="werknote"><b>Werk in uitvoering:</b> ${r.werk}</p>`:""}
+        ${r.werk?`<p class="werknote"><b>Roadworks note:</b> ${r.werk}</p>`:""}
+        ${r.mapSegments?r.mapSegments.map(segment=>`
+          <div class="map-segment">
+            <strong>${segment.label}</strong>
+            <p>${segment.note}</p>
+            <a class="btn maps" href="${segment.href}" target="_blank" rel="noopener noreferrer">Open this map section ↗</a>
+          </div>`).join(""):""}
+        ${r.timeline?`
+          <details class="timeline">
+            <summary>Video timeline · ${r.timeline.length} checkpoints</summary>
+            <ol class="timeline-list">${r.timeline.map(item=>`<li><time>${item[0]}</time><span>${item[1]}</span></li>`).join("")}</ol>
+          </details>`:""}
         <div class="route-actions">
-          <a class="btn maps" href="${mapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps ↗</a>
-          ${r.video?`<a class="btn video" href="${r.video}" target="_blank" rel="noopener">▶ Watch this route driven</a>`:""}
+          ${r.mapSegments?"":`<a class="btn maps" href="${mapsUrl(r)}" target="_blank" rel="noopener noreferrer">Open broad loop in Google Maps ↗</a>`}
+          ${r.video?`<a class="btn video" href="${r.video}" target="_blank" rel="noopener noreferrer">▶ Open source video</a>`:""}
           <button class="btn plus" data-plus="${r.id}">+1 driven</button>
         </div>
-        <p class="maps-hint">Maps pins the key waypoints and routes between them — small detours from the step list are fine, the terrain is what matters. On your phone this opens straight in the Google Maps app.</p>
+        <p class="maps-hint">${r.mapSegments
+          ? "Each segment states its confidence. Google Maps can still recalculate; current signs, markings, signals and closures take precedence."
+          : "This is a broad waypoint-based practice loop, not a verified turn-by-turn exam route. Google Maps may choose different streets; current road instructions take precedence."}</p>
         <h3>Your notes on this route <span class="saved-flash" data-flash="${r.id}">saved ✓</span></h3>
         <textarea class="notes" data-notes="${r.id}" placeholder="e.g. missed priority-from-right at the second junction in Zeelst — recheck">${state.notes[r.id]||""}</textarea>
       </div>`;
@@ -801,14 +964,13 @@ function renderChecklist(){
 }
 
 function renderPlan(){
-  const exam = new Date(2026,7,27); const now = new Date(); now.setHours(0,0,0,0);
-  const d = Math.round((exam - now)/86400000);
+  const d = daysUntilExam();
   const active = d>7 ? 0 : d>=2 ? 1 : d===1 ? 2 : 3;
   const rows = [
-    ["Now → 1 week out","Terrain phase: drive routes 1–4 with your instructor, one per lesson, and watch both route videos. Goal: no 30-zone around here can surprise you."],
-    ["Final week","Full loops: routes 5–9 (drive 9 twice — it is the navigation leg) plus two bijzondere verrichtingen every session, and at least one complete 35-minute mock exam with the navigation on."],
-    ["Day before · 26 Aug","Taper: one short calm drive at most (route 1 is perfect), check the roadworks maps, lay out your ID, sleep eight hours."],
-    ["Exam day · 27 Aug","Light breakfast, arrive 15 minutes early, and read number plates on the drive over as your eye-test warm-up."]
+    ["Now → 1 week out",`Terrain phase: sample different areas from all ${ROUTES.length} cards with your instructor and review the evidence/confidence label before each drive. Practise adapting when Maps differs.`],
+    ["Final week","Full loops plus two special manoeuvres each session, with at least one involving reversing. Include one complete approximately 35-minute mock drive with independent navigation."],
+    [`Day before · ${formatIsoDate(DAY_BEFORE, {day:"numeric", month:"short"})}`,"Taper: one short calm drive at most, check the live roadworks sources, prepare your valid ID and lesson-car controls, then rest."],
+    [`Exam day · ${formatIsoDate(EXAM_DATE, {day:"numeric", month:"short"})}`,"Eat normally, arrive at the time agreed with your instructor, and keep treating signs and the live road layout—not a memorised route—as the source of truth."]
   ];
   let least = null;
   ROUTES.forEach(r=>{ const n = state.drives[r.id]||0; if(!least || n < least.n) least = {name:r.name, n}; });
@@ -820,19 +982,19 @@ function renderPlan(){
 const QUIZ = [
   {q:"You leave the CBR car park over the lowered kerb (uitrit). A pedestrian walks along the pavement you're crossing.", o:["You go first — cars beat pedestrians","The pedestrian goes first — leaving an uitrit you yield to everyone","Whoever arrives first goes first"], a:1, why:"An exit construction makes you lowest priority: pedestrians, cyclists, everyone goes before you."},
   {q:"Unmarked equal junction in Zeelst. A car approaches from your right.", o:["You have priority — your road looks wider","The car from the right goes first","Flash your lights and go"], a:1, why:"No signs, no sharks' teeth = right goes first. The Zeelst and Oerle cores are full of these."},
-  {q:"Leaving any roundabout, you signal…", o:["Only if someone is waiting to enter","Right, before your exit, every single time","Nothing — roundabouts are exempt"], a:1, why:"Silent exits are the classic slow point-bleed on the Heerbaan roundabout series."},
+  {q:"Leaving any roundabout, you signal…", o:["Only if someone is waiting to enter","Right, before your exit","Nothing — roundabouts are exempt"], a:1, why:"Indicate right before leaving, while continuing to obey the signs, markings and signals at that roundabout."},
   {q:"Approaching the Hovenring, you pick your lane…", o:["At the roundabout itself","About 200 m early, from the overhead arrows","Anywhere — you can switch on it"], a:1, why:"Wrong lane = wrong exit = points. Read the arrows before the queue forms."},
   {q:"In town, a bus signals to leave its stop.", o:["Let it pull out","Pass it quickly before it moves","Sound your horn and continue"], a:0, why:"Inside the bebouwde kom a departing bus gets priority — Noord-Brabantlaan tests this constantly."},
-  {q:"The N2 on-ramp: the motorway is busy. You…", o:["Slow right down and wait for a huge gap","Build speed, mirror–signal–shoulder, merge decisively","Stop at the end of the ramp"], a:1, why:"Hesitating on the ramp is a known fail. Match the traffic's speed and commit."},
+  {q:"The N2 on-ramp: the motorway is busy. You…", o:["Slow right down and wait for a huge gap","Build an appropriate speed, mirror–signal–shoulder, and merge into a safe gap","Stop at the end of the ramp"], a:1, why:"Use the acceleration lane to approach the traffic flow safely, observe fully and merge only into a suitable gap."},
   {q:"Default speed inside the bebouwde kom with no signs:", o:["30 km/h","50 km/h","70 km/h"], a:1, why:"50 is the default; 30 and 70 only apply where zoned or signed."},
-  {q:"Country lane in a 60-zone: cyclist ahead, car oncoming.", o:["Squeeze past the cyclist now","Hold back; overtake only with a clear view and ±1.5 m of space","Use the grass verge to pass"], a:1, why:"Squeezing a cyclist is a heavy fault. Route 7 exists to drill exactly this."},
-  {q:"Motorway, daytime (06:00–19:00), no matrix signs lit:", o:["100 km/h","120 km/h","130 km/h"], a:0, why:"100 by day is the default — matrix and roadside signs override it in both directions."},
-  {q:"Yellow lane markings appear next to the white ones.", o:["Follow white — they're permanent","Follow yellow — temporary beats permanent","Split the difference"], a:1, why:"Roadworks rule one. Expect this around Sondervick and De Run this month."},
+  {q:"Country lane in a signed 60-zone: cyclist ahead, car oncoming.", o:["Squeeze past the cyclist now","Hold back; overtake only with a clear view and ample lateral space","Use the grass verge to pass"], a:1, why:"Wait until you can pass without crowding the cyclist or conflicting with oncoming traffic."},
+  {q:"How do you determine the current motorway speed limit?", o:["It is always 100 km/h during the day","Use the current roadside and matrix signs","Copy the speed of the car ahead"], a:1, why:"Most motorway sections are 100 km/h by day, but some are signed 80 or 130. Current roadside and matrix signs determine the limit."},
+  {q:"Temporary yellow lane markings appear next to conflicting white ones.", o:["Follow white — they're permanent","Follow the temporary yellow markings","Split the difference"], a:1, why:"Temporary markings control the work-zone layout. Also obey temporary signs, signals and traffic controllers."},
   {q:"A pedestrian stands at a zebra, clearly about to step out.", o:["Only stop once they're on the crossing","Stop — 'clearly about to cross' counts too","Wave them across and roll through behind them"], a:1, why:"The rule covers people visibly about to cross, not just those already on it."},
   {q:"Chicane of parked cars on YOUR side of the street. Oncoming traffic approaches.", o:["You go — you arrived first","Oncoming goes first; the obstacle is on your side","The bigger car decides"], a:1, why:"Obstacle on your side = you yield. Constant situation in Bennekel and Zeelst."},
-  {q:"A red cross shows on the matrix sign above your lane.", o:["Lane closed — leave it as soon as safely possible","Fine to use below 50 km/h","Only applies to trucks"], a:0, why:"A red cross is a closed lane, full stop. Examiners check that you saw it."},
+  {q:"A red cross shows on the matrix sign above your lane.", o:["Lane closed — leave it as soon as safely possible","Fine to use below 50 km/h","Only applies to trucks"], a:0, why:"A red cross closes the lane. Move out as soon as it is safe and do not enter a closed lane."},
   {q:"Your parallel park ends crooked.", o:["Abandon it and drive off","Correct it calmly, keeping your lookout — a second go is fine","Wait for the examiner to take over"], a:1, why:"Correcting isn't the fault; hindering traffic or not looking around is."},
-  {q:"The three words the examiner scores your ride on:", o:["Snel, strak, stil","Vlot, veilig, zelfstandig","Rustig, netjes, rechts"], a:1, why:"Brisk, safe, independent — drive like the licence is already yours."}
+  {q:"A route video shows an old limit, but the current roadside sign shows another. You follow…", o:["The video — it is the route source","The current roadside and matrix signs","Whichever limit feels easier"], a:1, why:"Current signs, signals, markings and the live road layout always take precedence over this site, a video or Maps."}
 ];
 
 let qz = {order:[], i:0, score:0};
@@ -853,7 +1015,7 @@ function showQ(){
 function showEnd(){
   if(qz.score > (state.quizBest||0)){ state.quizBest = qz.score; saveState(); }
   quizBestLabel();
-  const msg = qz.score>=13 ? "Examiner-proof. Keep it sharp." : qz.score>=9 ? "Solid — reread your misses in Pocket rules, then go again." : "That's exactly why we practise. Run it again tomorrow.";
+  const msg = qz.score>=13 ? "Strong result. Keep practising adaptable observation." : qz.score>=9 ? "Solid — reread your misses in Pocket rules, then go again." : "That's exactly why we practise. Run it again tomorrow.";
   document.getElementById("quiz-box").innerHTML =
     `<p class="qscore">${qz.score} / ${QUIZ.length}</p>
      <p style="font-size:13.5px;color:var(--markering-dim);margin:6px 0 14px">${msg}</p>
@@ -879,6 +1041,7 @@ function quizClick(e){
 
 /* ---------------------------- init ---------------------------- */
 (async function(){
+  renderStaticCopy();
   renderCountdown();
   await loadState();
   renderRoutes();
