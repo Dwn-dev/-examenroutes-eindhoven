@@ -1,71 +1,59 @@
 # CBR Eindhoven — Examenroutes trainer
 
-A free, single-file web app for practising around **CBR Eindhoven (Hoevenweg 20)**. It contains **11 unofficial practice routes**, Google Maps links, video timelines, observation notes, car questions, special-manoeuvre practice, a 15-question self-test, live roadworks sources and locally saved progress.
+A free, single-file web app for practising the driving-exam terrain around **CBR Eindhoven (Hoevenweg 20)**: eight reconstructed practice loops with one-tap **Open in Google Maps** links, known hazard spots, the car questions (binnen & buiten), all 8 bijzondere verrichtingen with local location patterns, a 15-question self-test, a roadworks snapshot, and saved progress (routes driven, notes, checklist, best quiz score).
 
-**Live site:** https://dwn-dev.github.io/-examenroutes-eindhoven/
+**Live demo:** enable GitHub Pages on this repo (see below) and your site is at `https://<your-username>.github.io/<repo-name>/`
 
-## Disclaimer
+---
 
-This is an unofficial study tool and is **not affiliated with or endorsed by the CBR**. The CBR does not publish fixed exam routes. The cards combine:
+## ⚠️ Disclaimer
 
-- Broad waypoint-based practice loops
-- Two publisher animations
-- Two full-video reconstructions from Verkeersschool Weber
-- One instructor-reported NH Geldrop navigation scenario
-
-None is a guaranteed CBR route. Google Maps can recalculate between waypoints, and several residential turns in the videos remain approximate. Current signs, markings, traffic lights, road layouts, construction and speed limits always take precedence over this app, an old video or navigation.
+Unofficial study tool — **not affiliated with or endorsed by the CBR.** The CBR does not publish exam routes and examiners compose the ride on the day; these loops reconstruct the *terrain* documented by driving schools and route-video platforms. Roadworks data is a dated snapshot: the yellow signs on the road always win. Speed limits on the signs always beat anything in this app.
 
 ## Features
 
-- **11 routes** with stable IDs, ordered instructions, risk notes and Google Maps links
-- **Two full Weber video routes** with source metadata, confidence labels, embedded playback, segmented Maps links and timestamp timelines
-- **Two short publisher animations** using canonical `youtube.com/watch?v=` URLs and reconstruction/confidence labels
-- **Car questions** — tap-to-reveal cards for vehicle checks
-- **Special manoeuvres** — the official requirement is separated from a broader eight-technique practice toolbox
-- **Self-test** — 15 scenarios with explanations; the best score is saved
-- **Dynamic training plan** — one exam-date setting drives the countdown and all displayed dates
-- **Roadworks guidance** — live official sources instead of unverified dated closure claims
-- **No build or dependencies** — one `index.html`
+- **8 routes** covering the documented exam areas (Zeelst, Meerhoven, Gestel, Veldhoven, Aalst, Afrit 29, Oerle, Blaarthem), each with turn-by-turn steps, hazard notes and a Google Maps deep link that pins the waypoints
+- **Car questions** — 16 tap-to-reveal Q&A cards for the voertuigcontrole (outside / under the bonnet / inside)
+- **Bijzondere verrichtingen** — the 3-assignment system explained, all 8 techniques, and where each tends to happen around this exam centre
+- **Self-test** — 15 scenario questions with explanations; best score saved
+- **Plan** — countdown-driven training phases + least-practised-route coaching
+- **Roadworks snapshot** — dated, with live links (gemeente Eindhoven, Veldhoven, Vananaarbeter, Rijkswaterstaat)
+- **No build, no dependencies** — one `index.html`, works offline once loaded
 
-## Route IDs and saved progress
+## Run it locally
 
-Progress and notes are keyed by route `id` in the central `ROUTES` array. Existing IDs must never be renamed or reused, even when a route title changes or a new route is inserted.
+Open `index.html` in a browser. That's it.
 
-The 2023 Weber route deliberately keeps its existing `stratum` ID, while the added 2022 route uses `weber-2022-waalre`. This prevents existing driven counts and notes from being reassigned.
+## Publish on GitHub Pages
 
-Checklist ticks are keyed by array index, so append new checklist items instead of reordering existing ones.
+1. Create an empty repo on GitHub (e.g. `cbr-examenroutes-eindhoven`). Don't add a README — this folder already has one.
+2. From this folder:
 
-## Factual basis
+   ```bash
+   git remote add origin https://github.com/<your-username>/<repo-name>.git
+   git push -u origin main
+   ```
 
-- CBR practical-exam overview: https://www.cbr.nl/nl/rijbewijs-halen/auto/praktijkexamen-auto/hoe-gaat-het-praktijkexamen-auto
-- CBR Rijprocedure B: https://www.cbr.nl/nl/service/nl/artikel/rijprocedure-b-printversie
-- CBR tussentijdse toets: https://www.cbr.nl/nl/rijbewijs-halen/auto/praktijkexamen-auto/tussentijdse-toets-doen
-- CBR Eindhoven location: https://www.cbr.nl/nl/service/nl/route-locaties/tonen-op-cbr-locaties/examencentrum-eindhoven-3
-- Rijksoverheid motorway speed limits: https://www.rijksoverheid.nl/vraag-en-antwoord/verkeersveiligheid/wat-is-de-maximumsnelheid-voor-auto-s-op-de-snelweg
+   (The repo is already initialised with an initial commit.)
+3. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `main` / `(root)` → Save.**
+4. After a minute your site is live at `https://<your-username>.github.io/<repo-name>/`.
 
-The complete exam is approximately 55 minutes and the drive approximately 35 minutes. The current Rijprocedure B says two special manoeuvres are tested, at least one involving reversing. A valid tussentijdse-toets exemption applies to the first subsequent practical exam, subject to current CBR conditions.
-
-## Run locally
-
-Open `index.html` in a browser, or serve the folder with any static HTTP server.
-
-## Publish with GitHub Pages
-
-In the repository settings, choose **Pages → Deploy from a branch → `main` / root**. GitHub Pages will publish the current `main` branch.
+No-terminal alternative: create the repo on github.com → **uploading an existing file** → drag everything in this folder → commit → enable Pages as in step 3.
 
 ## How progress saving works
 
-On the public web the app uses `localStorage` per browser and device. Inside a Claude artifact it can use the artifact storage API. If neither is available, it falls back to in-memory state that resets on reload. No account is required and no saved progress leaves the device.
+The app detects its environment: on the open web it uses `localStorage` (per browser/device), inside a Claude artifact it uses the artifact storage API, and if neither is available it falls back to in-memory (resets on reload). No accounts, no server, no data leaves the device.
 
-## Maintaining the app
+## Maintaining it
 
-- **Routes:** edit the central `ROUTES` array. Keep all existing `id` values stable.
-- **Route totals:** do not hardcode them. The UI derives the count from `ROUTES.length`.
-- **Exam date:** change `EXAM_DATE` once, using `YYYY-MM-DD`. All date text uses `Europe/Amsterdam`.
-- **Video evidence:** keep publication metadata, timestamps and confidence wording with each video route. Do not promote approximate residential turns to exact street instructions without visual proof.
-- **Roadworks:** review the linked Eindhoven, Veldhoven, Van A naar Beter and Rijkswaterstaat sources. Update the last-reviewed date, but do not add a closure unless a current official source confirms it.
-- **External links:** retain `target="_blank"` with `rel="noopener noreferrer"`.
-- **Checklist:** append items rather than reordering them, because saved ticks are index-based.
+- **Routes** live in the `ROUTES` array in `index.html` — copy an existing object to add route 9. `id` must stay stable (progress is keyed on it); `waypoints` are plain "street, city" strings that Google Maps geocodes.
+- **Roadworks**: update the snapshot list in the yellow card and change the `Snapshot:` date whenever you refresh it.
+- **Checklist**: append new items at the end only — saved ticks are keyed by index.
+- **Exam date**: the countdown and plan use `new Date(2026,7,27)` (month is 0-based). Change both occurrences for a new date.
+
+## Adapting for another CBR location
+
+Change `CBR` (start/finish address), rewrite `ROUTES` for that city's documented terrain, and redo the hotspots/roadworks sections. The rest is location-independent.
 
 ## License
 
